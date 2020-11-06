@@ -34,57 +34,70 @@ connection.on("ReceiveAllUsernames", function(message) {
 
         if (message[i].character == "FirstTank") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + firstTankPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401681705533450/tank-removebg-preview.png'>";
 
         } else if (message[i].character == "FirstCar") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + firstCarPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401685761425418/car_compact2-removebg-preview.png'>";
 
         } else if (message[i].character == "FirstPerson") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + firstPersonPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774402929657511966/soldier__1_-removebg-preview.png'>";
 
         } else if (message[i].character == "FirstPlane") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + firstPlanePicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774399475095568434/airplane-removebg-preview.png'>";
         }
 
         if (message[i].character == "SecondTank") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + secondTankPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401678938079242/tank2-removebg-preview.png'>";
 
         } else if (message[i].character == "SecondCar") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + secondCarPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401688860884993/car_compactb-removebg-preview.png'>";
 
         } else if (message[i].character == "SecondPerson") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + secondPersonPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401677759479808/soldier2-removebg-preview.png'>";
 
         } else if (message[i].character == "SecondPlane") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + secondPlanePicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401719420321802/airplane2-removebg-preview.png'>";
         }
 
         if (message[i].character == "ThirdTank") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + thirdTankPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401680325607434/tank3-removebg-preview.png'>";
 
         } else if (message[i].character == "ThirdCar") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + thirdCarPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401687208722483/car_compact3-removebg-preview.png'>";
 
         } else if (message[i].character == "ThirdPerson") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + thirdPersonPicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401676031164436/soldier_3-removebg-preview.png'>";
 
         } else if (message[i].character == "ThirdPlane") {
 
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + thirdPlanePicture;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='https://cdn.discordapp.com/attachments/753258314535665734/774401684255539220/airplane3-removebg-preview.png'>";
         }
 
         if (message[i].skin != null) {
-            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>" + message[i].skin;
+            document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
+            document.getElementById(i + 1 + "-player-bar").innerHTML = "<img style='margin-bottom:0px;margin-right: -25px;max-width: 50px;z-index: 1;' src='" + (message[i].skin).slice(34,-8) + "'>";
         }
 
         if (message[i].isWinner) {
@@ -128,7 +141,7 @@ connection.on("ReceiveAllUsernames", function(message) {
         }
 
         document.getElementById(i + 1 + "-player-bar").setAttribute("aria-valuenow", message[i].points);
-        document.getElementById(i + 1 + "-player-bar").setAttribute("style", "width:" + message[i].points + "%");
+        document.getElementById(i + 1 + "-player-bar").setAttribute("style", "width:" + message[i].points + "%; background-color: grey");
     }
 
 });

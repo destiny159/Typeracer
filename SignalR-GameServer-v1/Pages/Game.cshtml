@@ -9,6 +9,27 @@
         -ms-user-select: none;
         user-select: none;
     }
+    .civ { 
+    width: 100%; 
+    height: 50px; 
+    position: relative;
+    }
+
+    .civ:before { content: '';
+    position: absolute;
+    border-bottom: 5px white dashed;
+    height: 50px;
+    width: 100%;
+    transform: translateY(-50%);
+    }
+
+    .naujas{
+        align-items: flex-end;
+    }
+
+    .progress{
+        background-color: grey;
+    }
 </style>
 
 <div class="container-fluid">
@@ -24,12 +45,13 @@
             </h3>
         </div>
         <div class="col-md-8">
-            <div class="progress">
-                <div class="progress-bar" id="1-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+            <div class="progress civ">
+                <div class="progress-bar naujas" id="1-player-bar" role="progressbar" style="width: 0%;background-color: grey" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
     </div>
+    <div style="width: 100%; height: 10px"></div>
     <div class="row">
         <div class="col-md-4">
             <h3 class="text-left" id="2-player">
@@ -39,12 +61,13 @@
             </h3>
         </div>
         <div class="col-md-8">
-            <div class="progress">
-                <div class="progress-bar" id="2-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+            <div class="progress civ">
+                <div class="progress-bar naujas" id="2-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
     </div>
+    <div style="width: 100%; height: 10px"></div>
     <div class="row">
         <div class="col-md-4">
             <h3 class="text-left" id="3-player">
@@ -54,12 +77,13 @@
             </h3>
         </div>
         <div class="col-md-8">
-            <div class="progress">
-                <div class="progress-bar" id="3-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+            <div class="progress civ">
+                <div class="progress-bar naujas" id="3-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100"></div>
             </div>
         </div>
     </div>
+    <div style="width: 100%; height: 10px"></div>
     <div class="row">
         <div class="col-md-4">
             <h3 class="text-left" id="4-player">
@@ -70,14 +94,15 @@
         </div>
         <div class="col-md-8">
 
-            <div class="progress">
+            <div class="progress civ">
 
-                <div class="progress-bar" id="4-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                <div class="progress-bar naujas" id="4-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
                      aria-valuemin="0" aria-valuemax="100">
                 </div>
             </div>
         </div>
     </div>
+    <div style="width: 100%; height: 10px"></div>   
     <div class="row">
         <div class="col-md-12">
             <button type="submit" id="useSpecialAbility" class="btn btn-warning btn-lg col-md-12" style="width: 100%;">
