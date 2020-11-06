@@ -68,7 +68,7 @@ namespace SignalR_GameServer_v1
         public override string GetPlaneSkin()
         {
             Console.WriteLine("plane skin");
-            return "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774314783678791710/fighter-jet.png'></img>";
+            return "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774412521691021342/plane.png'></img>";
         }
         public override string GetCarSkin()
         {
