@@ -8,10 +8,11 @@ namespace SignalR_GameServer_v1
     public int points {get;set;}
     public bool isWinner {get;set;}
     public bool isLoser {get;set;}
-
     public string character {get;set;}
     public bool isAbilityUsed {get;set;}
     public int characterKoeficient {get;set;}
+    public string pointsColor {get;set;}
+    public string skin {get;set;}
     public Talisman talisman {get;set;}
 
     public Player()
