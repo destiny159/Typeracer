@@ -55,3 +55,16 @@ document.getElementById("setReadyButton").addEventListener("click", function(eve
     });
     event.preventDefault();
 });
+
+document.getElementById("generateUsername").addEventListener("click", function(event) {
+    var username = document.getElementById("usernameInput").value;
+
+    connection.invoke("SendUsernameToAPI", username).catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+connection.on("ReceiveUsernameFromAPI", function(username) {
+    document.getElementById("usernameInput").value = username;
+});

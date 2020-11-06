@@ -8,10 +8,21 @@ namespace SignalR_GameServer_v1
     :base(word)
     {
     }
-
+    //Shallow
     public override Word Clone()
     {
+    
       return (Word)this.MemberwiseClone();
     }
+    /*
+    //Deep
+    public override Word Clone()
+    {
+       Word other = (Word)this.MemberwiseClone();
+       other.word = base.word;
+       return other;
+    }
+    */
+    
   }
 }

@@ -23,6 +23,6 @@ public sealed class Singleton
         public string Difference()  
         {  
             TimeSpan span = EndTime.Subtract ( StartTime );
-            return "Time spent: " +span.Seconds + "s.";
+            return "Total time spent: " +span.TotalSeconds + "s.";
         }   
     }  

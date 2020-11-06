@@ -50,6 +50,23 @@ namespace SignalR_GameServer_v1
         }
     }
 
+    class RandomSentence : Word
+    {
+        public RandomSentence()
+        {
+        }
+
+        public RandomSentence(string word)
+        {
+            this.word = word;
+        }
+
+        public override Word Clone()
+        {
+            throw new NotImplementedException();
+        }
+    }
+
     abstract class Creator
     {
         public abstract Word FactoryMethod();
@@ -116,6 +133,36 @@ namespace SignalR_GameServer_v1
             wordList.Add("rtrtrt");
             wordList.Add("tytyty");
 
+        }
+    }
+
+    class RandomSentenceCreator : Creator
+    {
+        List<String> wordList = new List<String>();
+        public override Word FactoryMethod()
+        {
+            Random random = new Random();
+            int start = random.Next(0, wordList.Count);
+            string newWord = wordList[start];
+            wordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+
+        public RandomSentenceCreator()
+        {
+            wordList.Add("Noriu namo");
+            wordList.Add("Mano namas didelis");
+            wordList.Add("Kompiuteris naujas");
+            wordList.Add("Puodelis pilnas kavos");
+            wordList.Add("ausines kraunasi");
+            wordList.Add("Milaknis pataiko");
+            wordList.Add("Telefoniukas senas");
+            wordList.Add("Neturiu nieko");
+            wordList.Add("Serveris veikia");
+            wordList.Add("ubuntu sistema");
+            wordList.Add("Kieras kartonas");
+            wordList.Add("Lenta ne malka");
         }
     }
 }

@@ -18,7 +18,7 @@ namespace SignalR_GameServer_v1.Hubs
         public static List<List<String>> userInfoArray = new List<List<String>>();
         static ConcreteSubject observer = new ConcreteSubject();
 
-        static Creator[] creators = new Creator[2];
+        static Creator[] creators = new Creator[3];
         public static List<String> wordList = new List<String>();
 
         public static String givenWord = "";
@@ -41,6 +41,12 @@ namespace SignalR_GameServer_v1.Hubs
 
         private static bool usedClone = false;
 
+        private static Target target = new Adapter();
+
+        private static PointsColorAbstraction pointsColorAbstraction = new PointsColorRefinedAbstraction();
+
+        private static SkinAbstraction skinAbstraction = new SkinAbstraction();
+        private static Facade facade = new Facade();
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -101,6 +107,7 @@ namespace SignalR_GameServer_v1.Hubs
         {
             creators[0] = new RandomLettersCreator();
             creators[1] = new RandomWordsCreator();
+            creators[2] = new RandomSentenceCreator();
 
             foreach (Creator creator in creators)
             {
@@ -142,6 +149,9 @@ namespace SignalR_GameServer_v1.Hubs
                 await Clients.Caller.SendAsync("GetWinMessage", lastAbilityUser);
                 await Clients.Others.SendAsync("GetLoseMessage");
 
+                Singleton.Instance.EndTime = DateTime.Now;
+                await Clients.All.SendAsync("ReceiveTimer", Singleton.Instance.Difference());
+
                 for (int i = 0; i < playerList.Count; i++)
                 {
                     if (playerList[i].username == username)
@@ -175,6 +185,18 @@ namespace SignalR_GameServer_v1.Hubs
                     Console.WriteLine("CheckWord abilityXPRate =1");
                 }
 
+
+                if(observer.SubjectState == 4){
+                   playerList = facade.ChangeToSecondLevel(playerList);
+                }
+
+                if(observer.SubjectState == 9){
+                   playerList = facade.ChangeToThirdLevel(playerList);
+                }
+
+
+
+
                 await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
 
                 if (usedClone)
@@ -194,7 +216,6 @@ namespace SignalR_GameServer_v1.Hubs
                 Console.WriteLine("Game word: " + givenWord);
                 WordPrototype gameWord = new WordPrototype(givenWord);
                 lastWord = (WordPrototype)gameWord.Clone();
-
                 await Clients.All.SendAsync("ReceiveCountdown", 5, givenWord);
 
                 observer.SubjectState++;
@@ -228,6 +249,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].character = tank.type;
                             playerList[i].points = 0;
                             playerList[i].characterKoeficient = tank.koeficient;
+                            playerList[i].pointsColor = "black";
                         }
                     }
 
@@ -245,6 +267,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].character = car.type;
                             playerList[i].points = 0;
                             playerList[i].characterKoeficient = car.koeficient;
+                            playerList[i].pointsColor = "black";
                         }
                     }
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", car.type);
@@ -262,6 +285,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].character = person.type;
                             playerList[i].points = 0;
                             playerList[i].characterKoeficient = person.koeficient;
+                            playerList[i].pointsColor = "black";
                         }
                     }
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", person.type);
@@ -278,6 +302,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].character = plane.type;
                             playerList[i].points = 0;
                             playerList[i].characterKoeficient = plane.koeficient;
+                            playerList[i].pointsColor = "black";
                         }
                     }
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", plane.type);
@@ -447,6 +472,99 @@ namespace SignalR_GameServer_v1.Hubs
         public void clonePrototype()
         {
             usedClone = true;
+        }
+
+        public async Task SendUsernameToAPI(string username)
+        {
+            Console.WriteLine(username);
+            await Clients.Caller.SendAsync("ReceiveUsernameFromAPI", target.RequestUsername(username));
+        }
+
+
+        public async Task receivePointsColor(string color, string username)
+        {
+            pointsColorAbstraction.Implementor = new ConcretePointsColorImplementor();
+
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if (playerList[i].username == username)
+                {
+                    switch (color)
+                    {
+                        case "green":
+                            playerList[i].pointsColor = pointsColorAbstraction.GetGreenPointsColor();
+                            break;
+                        case "blue":
+                            playerList[i].pointsColor = pointsColorAbstraction.GetBluePointsColor();
+                            break;
+                        case "red":
+                            playerList[i].pointsColor = pointsColorAbstraction.GetRedPointsColor();
+                            break;
+                        default:
+                            break;
+                    }
+                }
+            }
+
+            await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
+        }
+
+
+        public async Task receiveSkin(string username)
+        {
+
+            skinAbstraction.Implementor = new ConcreteSkinImplementor();
+
+            for (int i = 0; i < playerList.Count; i++)
+            {
+                if (playerList[i].username == username)
+                {
+                    switch (playerList[i].character)
+                    {
+                        case "FirstTank":
+                            playerList[i].skin = skinAbstraction.GetTankSkin();
+                            break;
+                        case "SecondTank":
+                            playerList[i].skin = skinAbstraction.GetTankSkin();
+                            break;
+                        case "ThirdTank":
+                            playerList[i].skin = skinAbstraction.GetTankSkin();
+                            break;
+
+                        case "FirstPerson":
+                            playerList[i].skin = skinAbstraction.GetPersonSkin();
+                            break;
+                        case "SecondPerson":
+                            playerList[i].skin = skinAbstraction.GetPersonSkin();
+                            break;
+                        case "ThirdPerson":
+                            playerList[i].skin = skinAbstraction.GetPersonSkin();
+                            break;
+
+                        case "FirstPlane":
+                            playerList[i].skin = skinAbstraction.GetPlaneSkin();
+                            break;
+                        case "SecondPlane":
+                            playerList[i].skin = skinAbstraction.GetPlaneSkin();
+                            break;
+                        case "ThirdPlane":
+                            playerList[i].skin = skinAbstraction.GetPlaneSkin();
+                            break;
+
+                        case "FirstCar":
+                            playerList[i].skin = skinAbstraction.GetCarSkin();
+                            break;
+                        case "SecondCar":
+                            playerList[i].skin = skinAbstraction.GetCarSkin();
+                            break;
+                        case "ThirdCar":
+                            playerList[i].skin = skinAbstraction.GetCarSkin();
+                            break;
+                    }
+                }
+            }
+
+            await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
         }
     }
     public static class UserHandler
