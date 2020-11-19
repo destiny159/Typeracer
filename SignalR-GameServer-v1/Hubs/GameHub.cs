@@ -47,6 +47,10 @@ namespace SignalR_GameServer_v1.Hubs
 
         private static SkinAbstraction skinAbstraction = new SkinAbstraction();
         private static Facade facade = new Facade();
+
+        private static Collection collection = new Collection();
+        private static Iterator iterator = collection.CreateIterator();
+
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -105,16 +109,15 @@ namespace SignalR_GameServer_v1.Hubs
 
         public void MakeWords()
         {
-            creators[0] = new RandomLettersCreator();
-            creators[1] = new RandomWordsCreator();
+            creators[0] = new RandomWordsCreator();
+            creators[1] = new RandomLettersCreator();
             creators[2] = new RandomSentenceCreator();
 
             foreach (Creator creator in creators)
             {
                 for (int i = 0; i < 10; i++)
                 {
-                    Word word = creator.FactoryMethod();
-                    wordList.Add(word.word);
+                    collection[i] = creator.FactoryMethod();
                 }
             }
         }
@@ -135,9 +138,9 @@ namespace SignalR_GameServer_v1.Hubs
                 observer.SubjectState = 1;
                 observer.Notify();
                 MakeWords();
-                Random random = new Random();
-                int start2 = random.Next(0, wordList.Count);
-                givenWord = wordList[start2];
+
+                iterator.Step = 1;
+                givenWord = iterator.Next().word;
                 await Clients.All.SendAsync("ReceiveCountdown", 5, givenWord);
             }
         }
@@ -206,10 +209,8 @@ namespace SignalR_GameServer_v1.Hubs
                 }
                 else
                 {
-                    Random random = new Random();
-                    int start2 = random.Next(0, wordList.Count);
-                    givenWord = wordList[start2];
-                    wordList.RemoveAt(start2);
+                    iterator.Step = 1;
+                    givenWord = iterator.Next().word;
                 }
 
                 Console.WriteLine("Last word: " + lastWord.word);
