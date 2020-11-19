@@ -69,100 +69,183 @@ namespace SignalR_GameServer_v1
 
     abstract class Creator
     {
-        public abstract Word FactoryMethod();
+        public abstract Word FirstLevel();
+
+        public abstract Word SecondLevel();
+
+        public abstract Word ThirdLevel();
     }
 
     class RandomWordsCreator : Creator
     {
 
-        List<String> wordList = new List<String>();
-        public override Word FactoryMethod()
+        List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
+        public override Word FirstLevel()
         {
             Random random = new Random();
-            int start = random.Next(0, wordList.Count);
-            string newWord = wordList[start];
-            wordList.RemoveAt(start);
+            int start = random.Next(0, firstWordList.Count);
+            string newWord = firstWordList[start];
+            firstWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word SecondLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, secondWordList.Count);
+            string newWord = secondWordList[start];
+            secondWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word ThirdLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, thirdWordList.Count);
+            string newWord = thirdWordList[start];
+            thirdWordList.RemoveAt(start);
 
             return new RandomLetters(newWord);
         }
 
         public RandomWordsCreator()
         {
-            wordList.Add("Antanas");
-            wordList.Add("Budelis");
-            wordList.Add("Butelis");
-            wordList.Add("Kompas");
-            wordList.Add("Orbita");
-            wordList.Add("Lapas");
-            wordList.Add("Laidas");
-            wordList.Add("Mykolas");
-            wordList.Add("Jonukas");
-            wordList.Add("Negalima");
-            wordList.Add("Telefonas");
-            wordList.Add("Atsuktuvas");
-            wordList.Add("Margarita");
-            wordList.Add("Laikas");
+            firstWordList.Add("PAntanas");
+            firstWordList.Add("PBudelis");
+            firstWordList.Add("PButelis");
+            firstWordList.Add("PKompas");
+            firstWordList.Add("POrbita");
+            
+            secondWordList.Add("ALapas");
+            secondWordList.Add("ALaidas");
+            secondWordList.Add("AMykolas");
+            secondWordList.Add("AJonukas");
+            secondWordList.Add("ANegalima");
+            
+            thirdWordList.Add("TTelefonas");
+            thirdWordList.Add("TAtsuktuvas");
+            thirdWordList.Add("TMargarita");
+            thirdWordList.Add("TLaikas");
+            thirdWordList.Add("TMokomasis");
+            thirdWordList.Add("TLOGIKA");
         }
     }
 
     class RandomLettersCreator : Creator
     {
-        List<String> wordList = new List<String>();
-        public override Word FactoryMethod()
+        List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
+        public override Word FirstLevel()
         {
             Random random = new Random();
-            int start = random.Next(0, wordList.Count);
-            string newWord = wordList[start];
-            wordList.RemoveAt(start);
+            int start = random.Next(0, firstWordList.Count);
+            string newWord = firstWordList[start];
+            firstWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word SecondLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, secondWordList.Count);
+            string newWord = secondWordList[start];
+            secondWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word ThirdLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, thirdWordList.Count);
+            string newWord = thirdWordList[start];
+            thirdWordList.RemoveAt(start);
 
             return new RandomLetters(newWord);
         }
 
         public RandomLettersCreator()
         {
-            wordList.Add("zxzxzx");
-            wordList.Add("xcxcxc");
-            wordList.Add("cvcvcv");
-            wordList.Add("vbvbvb");
-            wordList.Add("bnbnbn");
-            wordList.Add("nmnmnm");
-            wordList.Add("asasas");
-            wordList.Add("qwqwqw");
-            wordList.Add("wewewe");
-            wordList.Add("ererer");
-            wordList.Add("rtrtrt");
-            wordList.Add("tytyty");
-
+            firstWordList.Add("Pzxzxzx");
+            firstWordList.Add("Pbcbcbc");
+            firstWordList.Add("Pcvcvcv");
+            firstWordList.Add("Polololo");
+            firstWordList.Add("Pkikikiki");
+            
+            secondWordList.Add("Artrtrtrt");
+            secondWordList.Add("Aqwqwqw");
+            secondWordList.Add("Auiuiuiui");
+            secondWordList.Add("Apopopo");
+            secondWordList.Add("Anrnrnrn");
+            
+            thirdWordList.Add("Tsesese");
+            thirdWordList.Add("Tasasas");
+            thirdWordList.Add("Tasasas");
+            thirdWordList.Add("Tvbvbvb");
+            thirdWordList.Add("Tgsgssg");
+            thirdWordList.Add("Tsdgdgdxc");
+            thirdWordList.Add("Tvxcvxcv");
+            thirdWordList.Add("Tgdfgdfg");
         }
     }
 
     class RandomSentenceCreator : Creator
     {
-        List<String> wordList = new List<String>();
-        public override Word FactoryMethod()
+       List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
+        public override Word FirstLevel()
         {
             Random random = new Random();
-            int start = random.Next(0, wordList.Count);
-            string newWord = wordList[start];
-            wordList.RemoveAt(start);
+            int start = random.Next(0, firstWordList.Count);
+            string newWord = firstWordList[start];
+            firstWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word SecondLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, secondWordList.Count);
+            string newWord = secondWordList[start];
+            secondWordList.RemoveAt(start);
+
+            return new RandomLetters(newWord);
+        }
+        public override Word ThirdLevel()
+        {
+            Random random = new Random();
+            int start = random.Next(0, thirdWordList.Count);
+            string newWord = thirdWordList[start];
+            thirdWordList.RemoveAt(start);
 
             return new RandomLetters(newWord);
         }
 
         public RandomSentenceCreator()
         {
-            wordList.Add("Noriu namo");
-            wordList.Add("Mano namas didelis");
-            wordList.Add("Kompiuteris naujas");
-            wordList.Add("Puodelis pilnas kavos");
-            wordList.Add("ausines kraunasi");
-            wordList.Add("Milaknis pataiko");
-            wordList.Add("Telefoniukas senas");
-            wordList.Add("Neturiu nieko");
-            wordList.Add("Serveris veikia");
-            wordList.Add("ubuntu sistema");
-            wordList.Add("Kieras kartonas");
-            wordList.Add("Lenta ne malka");
+            firstWordList.Add("PNoriu namo");
+            firstWordList.Add("PMano namas didelis");
+            firstWordList.Add("PKompiuteris naujas");
+            firstWordList.Add("PPuodelis pilnas kavos");
+
+            secondWordList.Add("Aausines kraunasi");
+            secondWordList.Add("AMilaknis pataiko");
+            secondWordList.Add("ATelefoniukas senas");
+            secondWordList.Add("SNeturiu nieko");
+
+            thirdWordList.Add("TServeris veikia");
+            thirdWordList.Add("Tubuntu sistema");
+            thirdWordList.Add("TKieras kartonas");
+            thirdWordList.Add("TLenta ne malka");
         }
     }
 }

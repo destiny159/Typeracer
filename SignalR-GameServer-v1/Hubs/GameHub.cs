@@ -51,6 +51,12 @@ namespace SignalR_GameServer_v1.Hubs
         private static Collection collection = new Collection();
         private static Iterator iterator = collection.CreateIterator();
 
+        private static AbstractClass firstLevel = new FirstLevelWord();
+
+        private static AbstractClass secondLevel = new SecondLevelWord();
+
+        private static AbstractClass thirdLevel = new ThirdLevelWord();
+
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -109,17 +115,45 @@ namespace SignalR_GameServer_v1.Hubs
 
         public void MakeWords()
         {
-            creators[0] = new RandomWordsCreator();
-            creators[1] = new RandomLettersCreator();
-            creators[2] = new RandomSentenceCreator();
-
-            foreach (Creator creator in creators)
+            int x = 0;
+            for (int i = 0; i < 9; i++)
             {
-                for (int i = 0; i < 10; i++)
+                if (i <= 2)
                 {
-                    collection[i] = creator.FactoryMethod();
+                    Console.WriteLine("FIRST LEVEL");
+                    Word[] list = firstLevel.TemplateMethod();
+                    collection[x] = list[0];
+                    x++;
+                    collection[x] = list[1];
+                    x++;
+                    collection[x] = list[2];
+                    x++;
+                }
+                if (i >= 3 && i<=5)
+                {
+                    Console.WriteLine("SECOND LEVEL");
+                    Word[] list = secondLevel.TemplateMethod();
+                    collection[x] = list[0];
+                    x++;
+                    collection[x] = list[1];
+                    x++;
+                    collection[x] = list[2];
+                    x++;
+                }
+                if (i >= 6)
+                {
+                    Console.WriteLine("Third LEVEL");
+                    Word[] list = thirdLevel.TemplateMethod();
+                    collection[x] = list[0];
+                    x++;
+                    collection[x] = list[1];
+                    x++;
+                    collection[x] = list[2];
+                    x++;
                 }
             }
+
+            Console.WriteLine(collection[0]);
         }
 
         public async Task GetTimer()
@@ -316,6 +350,7 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task SetReady(string username)
         {
+           
             Player newPlayer = new Player();
             newPlayer.username = username;
             newPlayer.isAbilityUsed = false;
