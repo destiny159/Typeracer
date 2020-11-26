@@ -21,6 +21,7 @@ namespace SignalR_GameServer_v1
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseUrls("http://192.168.1.162:5000");
                 });
     }
 }
