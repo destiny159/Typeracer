@@ -16,5 +16,5 @@ namespace SignalR_GameServer_v1
 
         public int koeficient {get;set;}
         public string type {get;set;}
-    }//labas
+    }
 }

@@ -15,6 +15,11 @@ namespace SignalR_GameServer_v1
         {
             this.word = Word;
         }
+        public abstract void Add(Word word);
+
+        public abstract void Remove(Word word);
+
+        public abstract void Display(int depth);
     }
 
     class RandomWords : Word
@@ -32,6 +37,20 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+
+        public override void Add(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Remove(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Display(int depth)
+        {
+            throw new NotImplementedException();
+        }
+        
     }
 
     class RandomLetters : Word
@@ -48,6 +67,21 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+
+        public override void Add(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Remove(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Display(int depth)
+        {
+            throw new NotImplementedException();
+        }
+
+       
     }
 
     class RandomSentence : Word
@@ -65,6 +99,21 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+
+        public override void Add(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Remove(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Display(int depth)
+        {
+            throw new NotImplementedException();
+        }
+
+       
     }
 
     abstract class Creator

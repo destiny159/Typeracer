@@ -11,6 +11,7 @@ namespace SignalR_GameServer_v1.Hubs
         public GameHub()
         {
         }
+
         public static bool close = false;
         public static int userCount = 0;
         public static int characterCount = 0;
@@ -108,6 +109,7 @@ namespace SignalR_GameServer_v1.Hubs
                 default:
                     break;
             }
+
             lastAbilityUser = character;
 
             await Clients.All.SendAsync("InformThatSomeoneUseAbility");
@@ -128,8 +130,30 @@ namespace SignalR_GameServer_v1.Hubs
                     x++;
                     collection[x] = list[2];
                     x++;
+
+                    Composite word = new Composite("Word");
+                    word.Add(new Leaf(list[0].word));
+
+                    Composite letters = new Composite("Letters");
+                    letters.Add(new Leaf(list[1].word));
+
+                    Composite sentence = new Composite("Sentence");
+                    sentence.Add(new Leaf(list[2].word));
+
+                    letters.Add(sentence);
+                    word.Add(letters);
+
+                    word.Display(1);
+                    
+
+                    word = null;
+                    letters = null;
+                    sentence = null;
+
+                    // Console.WriteLine(word.leafXXX());
                 }
-                if (i >= 3 && i<=5)
+
+                if (i >= 3 && i <= 5)
                 {
                     Console.WriteLine("SECOND LEVEL");
                     Word[] list = secondLevel.TemplateMethod();
@@ -140,6 +164,7 @@ namespace SignalR_GameServer_v1.Hubs
                     collection[x] = list[2];
                     x++;
                 }
+
                 if (i >= 6)
                 {
                     Console.WriteLine("Third LEVEL");
@@ -161,10 +186,12 @@ namespace SignalR_GameServer_v1.Hubs
             Singleton.Instance.EndTime = DateTime.Now;
             await Clients.Caller.SendAsync("ReceiveTimer", Singleton.Instance.Difference());
         }
+
         public async Task GetUsernames()
         {
             await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
         }
+
         public async Task CheckCharacterCount(int characterCount)
         {
             if (characterCount == 4)
@@ -196,7 +223,8 @@ namespace SignalR_GameServer_v1.Hubs
                         WinnerLoser winnerLoser = new WinnerLoser(playerList[i]);
                         winnerLoser.SetWinner();
 
-                        playerList[i].points = playerList[i].points + 10 + abilityXpRate * xpRate * playerList[i].characterKoeficient;
+                        playerList[i].points = playerList[i].points + 10 +
+                                               abilityXpRate * xpRate * playerList[i].characterKoeficient;
                         Console.WriteLine("CheckWord abilityXPRate " + abilityXpRate);
                     }
                     else
@@ -223,15 +251,15 @@ namespace SignalR_GameServer_v1.Hubs
                 }
 
 
-                if(observer.SubjectState == 4){
-                   playerList = facade.ChangeToSecondLevel(playerList);
+                if (observer.SubjectState == 4)
+                {
+                    playerList = facade.ChangeToSecondLevel(playerList);
                 }
 
-                if(observer.SubjectState == 9){
-                   playerList = facade.ChangeToThirdLevel(playerList);
+                if (observer.SubjectState == 9)
+                {
+                    playerList = facade.ChangeToThirdLevel(playerList);
                 }
-
-
 
 
                 await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
@@ -250,7 +278,7 @@ namespace SignalR_GameServer_v1.Hubs
                 Console.WriteLine("Last word: " + lastWord.word);
                 Console.WriteLine("Game word: " + givenWord);
                 WordPrototype gameWord = new WordPrototype(givenWord);
-                lastWord = (WordPrototype)gameWord.Clone();
+                lastWord = (WordPrototype) gameWord.Clone();
                 await Clients.All.SendAsync("ReceiveCountdown", 5, givenWord);
 
                 observer.SubjectState++;
@@ -258,6 +286,7 @@ namespace SignalR_GameServer_v1.Hubs
                 await Clients.All.SendAsync("GetGameRound", observer.SubjectState);
             }
         }
+
         public async Task RequestGameRound()
         {
             await Clients.All.SendAsync("GetGameRound", observer.SubjectState);
@@ -269,6 +298,7 @@ namespace SignalR_GameServer_v1.Hubs
             observer.Attach(new ConcreteObserver(observer, username));
             await CheckCharacterCount(characterCount);
         }
+
         public async Task SelectCharacter(string character, string username)
         {
             switch (character)
@@ -278,7 +308,6 @@ namespace SignalR_GameServer_v1.Hubs
 
                     for (int i = 0; i < playerList.Count; i++)
                     {
-
                         if (playerList[i].username == username)
                         {
                             playerList[i].character = tank.type;
@@ -296,7 +325,6 @@ namespace SignalR_GameServer_v1.Hubs
 
                     for (int i = 0; i < playerList.Count; i++)
                     {
-
                         if (playerList[i].username == username)
                         {
                             playerList[i].character = car.type;
@@ -305,6 +333,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].pointsColor = "black";
                         }
                     }
+
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", car.type);
 
                     break;
@@ -314,7 +343,6 @@ namespace SignalR_GameServer_v1.Hubs
 
                     for (int i = 0; i < playerList.Count; i++)
                     {
-
                         if (playerList[i].username == username)
                         {
                             playerList[i].character = person.type;
@@ -323,6 +351,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].pointsColor = "black";
                         }
                     }
+
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", person.type);
 
                     break;
@@ -331,7 +360,6 @@ namespace SignalR_GameServer_v1.Hubs
 
                     for (int i = 0; i < playerList.Count; i++)
                     {
-
                         if (playerList[i].username == username)
                         {
                             playerList[i].character = plane.type;
@@ -340,6 +368,7 @@ namespace SignalR_GameServer_v1.Hubs
                             playerList[i].pointsColor = "black";
                         }
                     }
+
                     await Clients.Caller.SendAsync("ReturnAvatarTitle", plane.type);
 
                     break;
@@ -350,7 +379,6 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task SetReady(string username)
         {
-           
             Player newPlayer = new Player();
             newPlayer.username = username;
             newPlayer.isAbilityUsed = false;
@@ -361,7 +389,6 @@ namespace SignalR_GameServer_v1.Hubs
 
             if (userCount < 4)
             {
-
                 playerList.Add(newPlayer);
 
                 userCount++;
@@ -382,6 +409,7 @@ namespace SignalR_GameServer_v1.Hubs
                 await Clients.All.SendAsync("SentRedirectToAllPlayers");
             }
         }
+
         public async Task GetReadyUsersCount()
         {
             if (userCount > 3)
@@ -389,8 +417,10 @@ namespace SignalR_GameServer_v1.Hubs
                 await Clients.Caller.SendAsync("LoginLock", "");
                 return;
             }
+
             await Clients.Caller.SendAsync("ReadyUserCount", userCount);
         }
+
         public override Task OnConnectedAsync()
         {
             if (userCount == 0)
@@ -398,10 +428,12 @@ namespace SignalR_GameServer_v1.Hubs
                 Singleton.Instance.StartTime = DateTime.Now;
             }
 
+            MakeWords();
             UserHandler.ConnectedIds.Add(Context.ConnectionId);
 
             return base.OnConnectedAsync();
         }
+
         public async Task CalculateTime()
         {
             Singleton.Instance.EndTime = DateTime.Now;
@@ -455,6 +487,7 @@ namespace SignalR_GameServer_v1.Hubs
                 }
             }
         }
+
         public async Task BuyBronzeTalisman(string username)
         {
             builder = new BronzeTalismanBuilder();
@@ -475,6 +508,7 @@ namespace SignalR_GameServer_v1.Hubs
                 }
             }
         }
+
         public void PenaltyCommand()
         {
             Command command = new PenaltyCommand(playerList);
@@ -495,6 +529,7 @@ namespace SignalR_GameServer_v1.Hubs
             invoker.ExecuteCommand();
             await Clients.All.SendAsync("EnableAbilityButton");
         }
+
         public void PrizeCommand()
         {
             Command command = new PrizeCommand(playerList);
@@ -548,7 +583,6 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task receiveSkin(string username)
         {
-
             skinAbstraction.Implementor = new ConcreteSkinImplementor();
 
             for (int i = 0; i < playerList.Count; i++)
@@ -603,6 +637,7 @@ namespace SignalR_GameServer_v1.Hubs
             await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
         }
     }
+
     public static class UserHandler
     {
         public static List<string> ConnectedIds = new List<string>();

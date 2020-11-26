@@ -23,6 +23,18 @@ namespace SignalR_GameServer_v1
        return other;
     }
     */
-    
+        public override void Add(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Remove(Word word)
+        {
+            throw new NotImplementedException();
+        }
+        public override void Display(int depth)
+        {
+            throw new NotImplementedException();
+        }
+
   }
 }
