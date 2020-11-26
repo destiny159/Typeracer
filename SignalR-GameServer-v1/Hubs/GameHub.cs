@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 namespace SignalR_GameServer_v1.Hubs
 {
@@ -211,7 +212,13 @@ namespace SignalR_GameServer_v1.Hubs
             {
                 observer.SubjectState = 1;
                 observer.Notify();
+                Stopwatch stopWatch = new Stopwatch();
+                stopWatch.Start();
                 MakeWords();
+                stopWatch.Stop();
+                TimeSpan ts = stopWatch.Elapsed;
+               
+                Console.WriteLine("MakeWords ticks: " + ts.Ticks);
 
                 iterator.Step = 1;
                 givenWord = iterator.Next().word;
