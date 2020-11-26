@@ -48,6 +48,10 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+        public override String GetItem(int level)
+        {
+            throw new NotImplementedException();
+        }
     }
 
     class Leaf : Word
@@ -72,6 +76,10 @@ namespace SignalR_GameServer_v1
         }
 
         public override Word Clone()
+        {
+            throw new NotImplementedException();
+        }
+        public override String GetItem(int level)
         {
             throw new NotImplementedException();
         }

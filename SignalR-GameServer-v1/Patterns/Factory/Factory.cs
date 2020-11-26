@@ -20,12 +20,37 @@ namespace SignalR_GameServer_v1
         public abstract void Remove(Word word);
 
         public abstract void Display(int depth);
+
+        public abstract String GetItem(int level);
     }
 
     class RandomWords : Word
     {
+        List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
         public RandomWords()
         {
+            firstWordList.Add("PAntanas");
+            firstWordList.Add("PBudelis");
+            firstWordList.Add("PButelis");
+            firstWordList.Add("PKompas");
+            firstWordList.Add("POrbita");
+            
+            secondWordList.Add("ALapas");
+            secondWordList.Add("ALaidas");
+            secondWordList.Add("AMykolas");
+            secondWordList.Add("AJonukas");
+            secondWordList.Add("ANegalima");
+            
+            thirdWordList.Add("TTelefonas");
+            thirdWordList.Add("TAtsuktuvas");
+            thirdWordList.Add("TMargarita");
+            thirdWordList.Add("TLaikas");
+            thirdWordList.Add("TMokomasis");
+            thirdWordList.Add("TLOGIKA");
         }
 
         public RandomWords(string word)
@@ -50,13 +75,67 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+        public override String GetItem(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    Random random = new Random();
+                    int start = random.Next(0, firstWordList.Count);
+                    string newWord = firstWordList[start];
+                    firstWordList.RemoveAt(start);
+
+                    return newWord;
+                case 2:
+                    Random random2 = new Random();
+                    int start2 = random2.Next(0, secondWordList.Count);
+                    string newWord2 = secondWordList[start2];
+                    secondWordList.RemoveAt(start2);
+
+                    return newWord2;
+                case 3:
+                    Random random3 = new Random();
+                    int start3 = random3.Next(0, thirdWordList.Count);
+                    string newWord3 = thirdWordList[start3];
+                    thirdWordList.RemoveAt(start3);
+
+                    return newWord3;
+            }
+
+            return "";
+        }
         
     }
 
     class RandomLetters : Word
     {
+        List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
         public RandomLetters()
         {
+            firstWordList.Add("Pzxzxzx");
+            firstWordList.Add("Pbcbcbc");
+            firstWordList.Add("Pcvcvcv");
+            firstWordList.Add("Polololo");
+            firstWordList.Add("Pkikikiki");
+            
+            secondWordList.Add("Artrtrtrt");
+            secondWordList.Add("Aqwqwqw");
+            secondWordList.Add("Auiuiuiui");
+            secondWordList.Add("Apopopo");
+            secondWordList.Add("Anrnrnrn");
+            
+            thirdWordList.Add("Tsesese");
+            thirdWordList.Add("Tasasas");
+            thirdWordList.Add("Tasasas");
+            thirdWordList.Add("Tvbvbvb");
+            thirdWordList.Add("Tgsgssg");
+            thirdWordList.Add("Tsdgdgdxc");
+            thirdWordList.Add("Tvxcvxcv");
+            thirdWordList.Add("Tgdfgdfg");
         }
 
         public RandomLetters(string letters)
@@ -80,16 +159,61 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+        public override String GetItem(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    Random random = new Random();
+                    int start = random.Next(0, firstWordList.Count);
+                    string newWord = firstWordList[start];
+                    firstWordList.RemoveAt(start);
 
-       
+                    return newWord;
+                case 2:
+                    Random random2 = new Random();
+                    int start2 = random2.Next(0, secondWordList.Count);
+                    string newWord2 = secondWordList[start2];
+                    secondWordList.RemoveAt(start2);
+
+                    return newWord2;
+                case 3:
+                    Random random3 = new Random();
+                    int start3 = random3.Next(0, thirdWordList.Count);
+                    string newWord3 = thirdWordList[start3];
+                    thirdWordList.RemoveAt(start3);
+
+                    return newWord3;
+            }
+
+            return "";
+        }
     }
 
     class RandomSentence : Word
     {
+        List<String> firstWordList = new List<String>();
+
+        List<String> secondWordList = new List<String>();
+
+        List<String> thirdWordList = new List<String>();
         public RandomSentence()
         {
-        }
+            firstWordList.Add("PNoriu namo");
+            firstWordList.Add("PMano namas didelis");
+            firstWordList.Add("PKompiuteris naujas");
+            firstWordList.Add("PPuodelis pilnas kavos");
 
+            secondWordList.Add("Aausines kraunasi");
+            secondWordList.Add("AMilaknis pataiko");
+            secondWordList.Add("ATelefoniukas senas");
+            secondWordList.Add("SNeturiu nieko");
+
+            thirdWordList.Add("TServeris veikia");
+            thirdWordList.Add("Tubuntu sistema");
+            thirdWordList.Add("TKieras kartonas");
+            thirdWordList.Add("TLenta ne malka");
+        }
         public RandomSentence(string word)
         {
             this.word = word;
@@ -112,8 +236,35 @@ namespace SignalR_GameServer_v1
         {
             throw new NotImplementedException();
         }
+        public override String GetItem(int level)
+        {
+            switch (level)
+            {
+                case 1:
+                    Random random = new Random();
+                    int start = random.Next(0, firstWordList.Count);
+                    string newWord = firstWordList[start];
+                    firstWordList.RemoveAt(start);
 
-       
+                    return newWord;
+                case 2:
+                    Random random2 = new Random();
+                    int start2 = random2.Next(0, secondWordList.Count);
+                    string newWord2 = secondWordList[start2];
+                    secondWordList.RemoveAt(start2);
+
+                    return newWord2;
+                case 3:
+                    Random random3 = new Random();
+                    int start3 = random3.Next(0, thirdWordList.Count);
+                    string newWord3 = thirdWordList[start3];
+                    thirdWordList.RemoveAt(start3);
+
+                    return newWord3;
+            }
+
+            return "";
+        }
     }
 
     abstract class Creator
@@ -128,173 +279,70 @@ namespace SignalR_GameServer_v1
     class RandomWordsCreator : Creator
     {
 
-        List<String> firstWordList = new List<String>();
+        static FlyweightFactory factory = new FlyweightFactory();
 
-        List<String> secondWordList = new List<String>();
-
-        List<String> thirdWordList = new List<String>();
+        Word rw = factory.GetFlyweight("RW");
+        
         public override Word FirstLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, firstWordList.Count);
-            string newWord = firstWordList[start];
-            firstWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rw.GetItem(1));
         }
         public override Word SecondLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, secondWordList.Count);
-            string newWord = secondWordList[start];
-            secondWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rw.GetItem(2));
         }
         public override Word ThirdLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, thirdWordList.Count);
-            string newWord = thirdWordList[start];
-            thirdWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rw.GetItem(3));
         }
 
         public RandomWordsCreator()
         {
-            firstWordList.Add("PAntanas");
-            firstWordList.Add("PBudelis");
-            firstWordList.Add("PButelis");
-            firstWordList.Add("PKompas");
-            firstWordList.Add("POrbita");
-            
-            secondWordList.Add("ALapas");
-            secondWordList.Add("ALaidas");
-            secondWordList.Add("AMykolas");
-            secondWordList.Add("AJonukas");
-            secondWordList.Add("ANegalima");
-            
-            thirdWordList.Add("TTelefonas");
-            thirdWordList.Add("TAtsuktuvas");
-            thirdWordList.Add("TMargarita");
-            thirdWordList.Add("TLaikas");
-            thirdWordList.Add("TMokomasis");
-            thirdWordList.Add("TLOGIKA");
         }
     }
 
     class RandomLettersCreator : Creator
     {
-        List<String> firstWordList = new List<String>();
+        static FlyweightFactory factory = new FlyweightFactory();
 
-        List<String> secondWordList = new List<String>();
-
-        List<String> thirdWordList = new List<String>();
+        Word rl = factory.GetFlyweight("RL");
         public override Word FirstLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, firstWordList.Count);
-            string newWord = firstWordList[start];
-            firstWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rl.GetItem(1));
         }
         public override Word SecondLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, secondWordList.Count);
-            string newWord = secondWordList[start];
-            secondWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rl.GetItem(2));
         }
         public override Word ThirdLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, thirdWordList.Count);
-            string newWord = thirdWordList[start];
-            thirdWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomLetters(rl.GetItem(3));
         }
 
         public RandomLettersCreator()
         {
-            firstWordList.Add("Pzxzxzx");
-            firstWordList.Add("Pbcbcbc");
-            firstWordList.Add("Pcvcvcv");
-            firstWordList.Add("Polololo");
-            firstWordList.Add("Pkikikiki");
-            
-            secondWordList.Add("Artrtrtrt");
-            secondWordList.Add("Aqwqwqw");
-            secondWordList.Add("Auiuiuiui");
-            secondWordList.Add("Apopopo");
-            secondWordList.Add("Anrnrnrn");
-            
-            thirdWordList.Add("Tsesese");
-            thirdWordList.Add("Tasasas");
-            thirdWordList.Add("Tasasas");
-            thirdWordList.Add("Tvbvbvb");
-            thirdWordList.Add("Tgsgssg");
-            thirdWordList.Add("Tsdgdgdxc");
-            thirdWordList.Add("Tvxcvxcv");
-            thirdWordList.Add("Tgdfgdfg");
         }
     }
 
     class RandomSentenceCreator : Creator
     {
-       List<String> firstWordList = new List<String>();
+        static FlyweightFactory factory = new FlyweightFactory();
 
-        List<String> secondWordList = new List<String>();
-
-        List<String> thirdWordList = new List<String>();
+        Word rs = factory.GetFlyweight("RS");
         public override Word FirstLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, firstWordList.Count);
-            string newWord = firstWordList[start];
-            firstWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomSentence(rs.GetItem(1));
         }
         public override Word SecondLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, secondWordList.Count);
-            string newWord = secondWordList[start];
-            secondWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomSentence(rs.GetItem(2));
         }
         public override Word ThirdLevel()
         {
-            Random random = new Random();
-            int start = random.Next(0, thirdWordList.Count);
-            string newWord = thirdWordList[start];
-            thirdWordList.RemoveAt(start);
-
-            return new RandomLetters(newWord);
+            return new RandomSentence(rs.GetItem(3));
         }
-
         public RandomSentenceCreator()
         {
-            firstWordList.Add("PNoriu namo");
-            firstWordList.Add("PMano namas didelis");
-            firstWordList.Add("PKompiuteris naujas");
-            firstWordList.Add("PPuodelis pilnas kavos");
-
-            secondWordList.Add("Aausines kraunasi");
-            secondWordList.Add("AMilaknis pataiko");
-            secondWordList.Add("ATelefoniukas senas");
-            secondWordList.Add("SNeturiu nieko");
-
-            thirdWordList.Add("TServeris veikia");
-            thirdWordList.Add("Tubuntu sistema");
-            thirdWordList.Add("TKieras kartonas");
-            thirdWordList.Add("TLenta ne malka");
         }
     }
 }
