@@ -131,26 +131,17 @@ namespace SignalR_GameServer_v1.Hubs
                     collection[x] = list[2];
                     x++;
 
-                    Composite word = new Composite("Word");
-                    word.Add(new Leaf(list[0].word));
-
-                    Composite letters = new Composite("Letters");
-                    letters.Add(new Leaf(list[1].word));
-
-                    Composite sentence = new Composite("Sentence");
-                    sentence.Add(new Leaf(list[2].word));
-
+                    Composite word = new Composite(list[0].word);
+                    Composite letters = new Composite(list[1].word);
+                    Composite sentence = new Composite(list[2].word);
+                    
                     letters.Add(sentence);
                     word.Add(letters);
-
                     word.Display(1);
                     
-
-                    word = null;
-                    letters = null;
-                    sentence = null;
-
-                    // Console.WriteLine(word.leafXXX());
+                    collection[x] = new Composite(word.getSequence());
+                    x++;
+                    
                 }
 
                 if (i >= 3 && i <= 5)
@@ -163,6 +154,17 @@ namespace SignalR_GameServer_v1.Hubs
                     x++;
                     collection[x] = list[2];
                     x++;
+                    
+                    Composite word = new Composite(list[0].word);
+                    Composite letters = new Composite(list[1].word);
+                    Composite sentence = new Composite(list[2].word);
+                    
+                    letters.Add(sentence);
+                    word.Add(letters);
+                    word.Display(1);
+                    
+                    collection[x] = new Composite(word.getSequence());
+                    x++;
                 }
 
                 if (i >= 6)
@@ -174,6 +176,17 @@ namespace SignalR_GameServer_v1.Hubs
                     collection[x] = list[1];
                     x++;
                     collection[x] = list[2];
+                    x++;
+                    
+                    Composite word = new Composite(list[0].word);
+                    Composite letters = new Composite(list[1].word);
+                    Composite sentence = new Composite(list[2].word);
+                    
+                    letters.Add(sentence);
+                    word.Add(letters);
+                    word.Display(1);
+                    
+                    collection[x] = new Composite(word.getSequence());
                     x++;
                 }
             }
@@ -427,8 +440,7 @@ namespace SignalR_GameServer_v1.Hubs
             {
                 Singleton.Instance.StartTime = DateTime.Now;
             }
-
-            MakeWords();
+            
             UserHandler.ConnectedIds.Add(Context.ConnectionId);
 
             return base.OnConnectedAsync();

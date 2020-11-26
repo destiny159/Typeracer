@@ -40,7 +40,7 @@ namespace SignalR_GameServer_v1
     class Iterator : IAbstractIterator
     {
         private Collection _collection;
-        private int _current = 0;
+        private int _current = -1;
         private int _step = 1;
 
         public Iterator(Collection collection)

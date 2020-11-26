@@ -8,7 +8,9 @@ namespace SignalR_GameServer_v1
     class Composite : Word
     {
         private List<Word> _children = new List<Word>();
-        
+
+        private static string sequence = "";
+
         public Composite(string name)
             : base(name)
         {
@@ -26,11 +28,22 @@ namespace SignalR_GameServer_v1
 
         public override void Display(int depth)
         {
+           
+            sequence += word;
+            
             foreach (Word component in _children)
             {
                 component.Display(depth + 2);
             }
         }
+
+        public String getSequence()
+        {
+            string oldSequence = sequence;
+            sequence = "";
+            return oldSequence;
+        }
+        
         public override Word Clone()
         {
             throw new NotImplementedException();
@@ -43,10 +56,6 @@ namespace SignalR_GameServer_v1
             : base(name)
         {
         }
-
-        public static string leafWord = "";
-        public static int leafCounter = 0;
-
         public override void Add(Word c)
         {
             Console.WriteLine("Cannot add to a leaf");
@@ -59,15 +68,7 @@ namespace SignalR_GameServer_v1
 
         public override void Display(int depth)
         {
-            leafWord += word;
-            leafCounter++;
             Console.WriteLine(new String('+', depth) + word);
-            Console.WriteLine("LEAF: "+leafWord);
-            
-            if (leafCounter % 3 == 0)
-            {
-                leafWord = "";
-            }
         }
 
         public override Word Clone()
