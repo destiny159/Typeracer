@@ -59,6 +59,14 @@ namespace SignalR_GameServer_v1.Hubs
 
         private static AbstractClass thirdLevel = new ThirdLevelWord();
 
+        private static Handler h1 = new ConcreteHandler1();
+
+        private static Handler h2 = new ConcreteHandler2();
+
+        private static Handler h3 = new ConcreteHandler3();
+
+        private static Handler h4 = new ConcreteHandler4();
+
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -135,14 +143,13 @@ namespace SignalR_GameServer_v1.Hubs
                     Composite word = new Composite(list[0].word);
                     Composite letters = new Composite(list[1].word);
                     Composite sentence = new Composite(list[2].word);
-                    
+
                     letters.Add(sentence);
                     word.Add(letters);
                     word.Display(1);
-                    
+
                     collection[x] = new Composite(word.getSequence());
                     x++;
-                    
                 }
 
                 if (i >= 3 && i <= 5)
@@ -155,15 +162,15 @@ namespace SignalR_GameServer_v1.Hubs
                     x++;
                     collection[x] = list[2];
                     x++;
-                    
+
                     Composite word = new Composite(list[0].word);
                     Composite letters = new Composite(list[1].word);
                     Composite sentence = new Composite(list[2].word);
-                    
+
                     letters.Add(sentence);
                     word.Add(letters);
                     word.Display(1);
-                    
+
                     collection[x] = new Composite(word.getSequence());
                     x++;
                 }
@@ -178,15 +185,15 @@ namespace SignalR_GameServer_v1.Hubs
                     x++;
                     collection[x] = list[2];
                     x++;
-                    
+
                     Composite word = new Composite(list[0].word);
                     Composite letters = new Composite(list[1].word);
                     Composite sentence = new Composite(list[2].word);
-                    
+
                     letters.Add(sentence);
                     word.Add(letters);
                     word.Display(1);
-                    
+
                     collection[x] = new Composite(word.getSequence());
                     x++;
                 }
@@ -217,7 +224,7 @@ namespace SignalR_GameServer_v1.Hubs
                 MakeWords();
                 stopWatch.Stop();
                 TimeSpan ts = stopWatch.Elapsed;
-               
+
                 Console.WriteLine("MakeWords ticks: " + ts.Ticks);
 
                 iterator.Step = 1;
@@ -228,7 +235,26 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task CheckWord(string word, string username)
         {
-            if (word == givenWord)
+            h1.SetSuccessor(h2);
+            h2.SetSuccessor(h3);
+            h3.SetSuccessor(h4);
+
+            double chainPoints = h1.HandleRequest(word, givenWord);
+
+
+            if (chainPoints < 1)
+            {
+                for (int i = 0; i < playerList.Count; i++)
+                {
+                    if (playerList[i].username == username)
+                    {
+                        playerList[i].points = playerList[i].points + Convert.ToInt32(10 * chainPoints);
+                    }
+                }
+
+                await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
+            }
+            else
             {
                 await Clients.Caller.SendAsync("GetWinMessage", lastAbilityUser);
                 await Clients.Others.SendAsync("GetLoseMessage");
@@ -243,7 +269,7 @@ namespace SignalR_GameServer_v1.Hubs
                         WinnerLoser winnerLoser = new WinnerLoser(playerList[i]);
                         winnerLoser.SetWinner();
 
-                        playerList[i].points = playerList[i].points + 10 +
+                        playerList[i].points = playerList[i].points + Convert.ToInt32(10 * chainPoints) +
                                                abilityXpRate * xpRate * playerList[i].characterKoeficient;
                         Console.WriteLine("CheckWord abilityXPRate " + abilityXpRate);
                     }
@@ -280,8 +306,7 @@ namespace SignalR_GameServer_v1.Hubs
                 {
                     playerList = facade.ChangeToThirdLevel(playerList);
                 }
-
-
+                
                 await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
 
                 if (usedClone)
@@ -447,7 +472,7 @@ namespace SignalR_GameServer_v1.Hubs
             {
                 Singleton.Instance.StartTime = DateTime.Now;
             }
-            
+
             UserHandler.ConnectedIds.Add(Context.ConnectionId);
 
             return base.OnConnectedAsync();
