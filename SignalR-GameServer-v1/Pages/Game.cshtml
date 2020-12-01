@@ -30,9 +30,14 @@
     .progress{
         background-color: grey;
     }
+    .winter::before {    
+          content: "";
+          background-image: url('https://placekitten.com/1200/800');
+          opacity: 0.3;
+    }
 </style>
 
-<div class="container-fluid">
+<div class="container-fluid" id="game-window">
     <br>
     <h1 id="round-place"></h1>
     <h6 id="time-place"></h6>

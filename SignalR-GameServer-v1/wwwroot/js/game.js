@@ -327,6 +327,19 @@ connection.on("EnableAbilityButton", function() {
     document.getElementById("useSpecialAbility").disabled = false;
 });
 
+connection.on("SeasonState", function (state) {
+    if (state == "WinterState") {
+        document.getElementById("game-window").setAttribute("style", "background-image: url(https://cdn.discordapp.com/attachments/704673822493638708/783413960866529290/winter.png)");
+    } else if (state == "SummerState") {
+        document.getElementById("game-window").setAttribute("style", "background-image: url(https://cdn.discordapp.com/attachments/704673822493638708/783413967342796840/summer.png)");
+    } else if (state == "SpringState") {
+        document.getElementById("game-window").setAttribute("style", "background-image: url(https://cdn.discordapp.com/attachments/704673822493638708/783413963235917897/spring.png)");
+    } else if (state == "AutumnState") {
+        document.getElementById("game-window").setAttribute("style", "background-image: url(https://cdn.discordapp.com/attachments/704673822493638708/783413962615685130/autumn.png)");
+    }
+    console.log(state);
+});
+
 
 function countdown(secs, word) {
     var milli = secs * (1000);

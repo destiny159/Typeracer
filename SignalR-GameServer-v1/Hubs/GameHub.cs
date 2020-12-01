@@ -67,6 +67,8 @@ namespace SignalR_GameServer_v1.Hubs
 
         private static Handler h4 = new ConcreteHandler4();
 
+        private static StateContext _stateContext = new StateContext(new WinterState());
+
         public async Task SendMessage(string user, string message)
         {
             //await Clients.All.SendAsync("ReceiveMessage", user, message);
@@ -230,6 +232,7 @@ namespace SignalR_GameServer_v1.Hubs
                 iterator.Step = 1;
                 givenWord = iterator.Next().word;
                 await Clients.All.SendAsync("ReceiveCountdown", 5, givenWord);
+                await Clients.All.SendAsync("SeasonState", _stateContext.State.GetType().Name);
             }
         }
 
@@ -258,7 +261,10 @@ namespace SignalR_GameServer_v1.Hubs
             {
                 await Clients.Caller.SendAsync("GetWinMessage", lastAbilityUser);
                 await Clients.Others.SendAsync("GetLoseMessage");
-
+                
+                await Clients.All.SendAsync("SeasonState", _stateContext.State.GetType().Name);
+                _stateContext.Request();
+                
                 Singleton.Instance.EndTime = DateTime.Now;
                 await Clients.All.SendAsync("ReceiveTimer", Singleton.Instance.Difference());
 
@@ -311,7 +317,7 @@ namespace SignalR_GameServer_v1.Hubs
                 {
                     playerList = facade.ChangeToThirdLevel(playerList);
                 }
-                
+
                 await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
 
                 if (usedClone)
@@ -429,7 +435,6 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task SetReady(string username)
         {
-            
             Player newPlayer = new Player();
             newPlayer.username = username;
             newPlayer.isAbilityUsed = false;
@@ -437,7 +442,7 @@ namespace SignalR_GameServer_v1.Hubs
             newPlayer.isWinner = false;
             newPlayer.isLoser = false;
             newPlayer.points = 0;
-            
+
             if (userCount == 0)
             {
                 newPlayer.permissionProxy.giveCommandPermission();
