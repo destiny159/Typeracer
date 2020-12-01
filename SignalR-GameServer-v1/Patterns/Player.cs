@@ -15,9 +15,19 @@ namespace SignalR_GameServer_v1
     public string skin {get;set;}
     public Talisman talisman {get;set;}
 
+    public PermissionProxy permissionProxy { get; set; }
+
     public Player()
     {
-      
+        permissionProxy = new PermissionProxy(); 
+    }
+    public bool commandPermission
+    {
+        get { return permissionProxy.getCommandPermission(); }
+    }
+    public bool shopPermission
+    {
+        get { return permissionProxy.getShopPermission(); }
     }
   }
 }

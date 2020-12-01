@@ -11,27 +11,14 @@ document.getElementById("silverTalismanButton").disabled = true;
 document.getElementById("goldTalismanButton").disabled = true;
 
 connection.on("ReceiveAllUsernames", function(message) {
-
+    
     var i;
     var winPicture = "<img style='max-width:40px' src='https://icons.iconarchive.com/icons/thesquid.ink/free-flat-sample/1024/cup-icon.png'></img>";
     var losePicture = "<img style='max-width:40px' src='https://cdn.iconscout.com/icon/free/png-512/sad-emoji-17-894764.png'></img>";
-    var firstTankPicture = "<img style='max-width:100px' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/tank.png'></img>";
-    var firstCarPicture = "<img style='max-width:100px' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/car_compact2.png'></img>";
-    var firstPersonPicture = "<img style='max-width:100px' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/soldier.png'></img>";
-    var firstPlanePicture = "<img style='max-width:100px' src='https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/airplane.png'></img>";
-
-    var secondTankPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774339551351013376/tank2.png'></img>";
-    var secondCarPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774340454300254238/car_compactb.png'></img>";
-    var secondPersonPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774340843452104704/soldier2.png'></img>";
-    var secondPlanePicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774341496178343967/airplane2.png'></img>";
-
-    var thirdTankPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774341805403668540/tank3.png'></img>";
-    var thirdCarPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774341807638183986/car_compact3.png'></img>";
-    var thirdPersonPicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774340841028190238/soldier_3.png'></img>";
-    var thirdPlanePicture = "<img style='max-width:100px' src='https://cdn.discordapp.com/attachments/753258314535665734/774341486031929375/airplane3.png'></img>";
 
     for (i = 0; i < message.length; i++) {
-
+        
+       
         if (message[i].character == "FirstTank") {
 
             document.getElementById(i + 1 + "-player").innerHTML = message[i].username + " <b style='color:" + message[i].pointsColor + "'>" + message[i].points + "</b>";
@@ -110,6 +97,17 @@ connection.on("ReceiveAllUsernames", function(message) {
 
         if (message[i].username == sessionStorage.getItem('username')) {
 
+            if(!message[i].commandPermission){
+                document.getElementById("command-card").setAttribute("style", "display:none");
+            }else{
+                document.getElementById("command-card").removeAttribute("style");
+            }
+            if(!message[i].shopPermission){
+                document.getElementById("shop-card").setAttribute("style", "display:none");
+            }else{
+                document.getElementById("shop-card").removeAttribute("style");
+            }
+            
             if (message[i].points >= 25) {
 
                 document.getElementById("bronzeTalismanButton").disabled = false;

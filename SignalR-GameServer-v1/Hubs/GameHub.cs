@@ -300,6 +300,11 @@ namespace SignalR_GameServer_v1.Hubs
                 if (observer.SubjectState == 4)
                 {
                     playerList = facade.ChangeToSecondLevel(playerList);
+
+                    foreach (var player in playerList)
+                    {
+                        player.permissionProxy.giveShopPermission();
+                    }
                 }
 
                 if (observer.SubjectState == 9)
@@ -424,6 +429,7 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task SetReady(string username)
         {
+            
             Player newPlayer = new Player();
             newPlayer.username = username;
             newPlayer.isAbilityUsed = false;
@@ -431,6 +437,11 @@ namespace SignalR_GameServer_v1.Hubs
             newPlayer.isWinner = false;
             newPlayer.isLoser = false;
             newPlayer.points = 0;
+            
+            if (userCount == 0)
+            {
+                newPlayer.permissionProxy.giveCommandPermission();
+            }
 
             if (userCount < 4)
             {
