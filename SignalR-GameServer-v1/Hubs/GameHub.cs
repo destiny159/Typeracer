@@ -68,6 +68,8 @@ namespace SignalR_GameServer_v1.Hubs
         private static Handler h4 = new ConcreteHandler4();
 
         private static StateContext _stateContext = new StateContext(new WinterState());
+        
+       private static Chatroom chatroom = new Chatroom();
 
         public async Task SendMessage(string user, string message)
         {
@@ -270,6 +272,8 @@ namespace SignalR_GameServer_v1.Hubs
 
                 for (int i = 0; i < playerList.Count; i++)
                 {
+                    playerList[i].receivedEmoji = "";
+                    playerList[i].receivedFrom = "";
                     if (playerList[i].username == username)
                     {
                         WinnerLoser winnerLoser = new WinnerLoser(playerList[i]);
@@ -433,7 +437,7 @@ namespace SignalR_GameServer_v1.Hubs
             }
         }
         
-        public async Task SendEmoji(string emoji)
+        public async Task SendEmoji(string emoji, string to,string from)
         {
             InterpreterContext context = new InterpreterContext(emoji);
 
@@ -447,14 +451,39 @@ namespace SignalR_GameServer_v1.Hubs
             {
                 exp.Interpret(context);
             }
+
+            if (to == "All")
+            {
+                foreach (var player in playerList)
+                {
+                    if (player.username == from)
+                    {
+                        foreach (var playerTo in playerList)
+                        {
+                            player.Send(playerTo.username, context.Output);     
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (var player in playerList)
+                {
+                    if (player.username == from)
+                    {
+                        player.Send(to, context.Output);
+                    }
+                }    
+            }
             
             Console.WriteLine("{0} = {1}", emoji, context.Output);
-
-            await Clients.All.SendAsync("ReceiveEmoji", context.Output);
+            
+            await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
         }
         
         public async Task SetReady(string username)
         {
+            Console.WriteLine("OK");
             Player newPlayer = new Player();
             newPlayer.username = username;
             newPlayer.isAbilityUsed = false;
@@ -462,7 +491,9 @@ namespace SignalR_GameServer_v1.Hubs
             newPlayer.isWinner = false;
             newPlayer.isLoser = false;
             newPlayer.points = 0;
-
+            newPlayer.receivedEmoji = "";
+            newPlayer.receivedFrom = "";
+            Console.WriteLine("OK-P: "+username);
             if (userCount == 0)
             {
                 newPlayer.permissionProxy.giveCommandPermission();
@@ -471,7 +502,9 @@ namespace SignalR_GameServer_v1.Hubs
             if (userCount < 4)
             {
                 playerList.Add(newPlayer);
-
+                Console.WriteLine("CH");
+                chatroom.Register(newPlayer);
+                Console.WriteLine("CH-OK");
                 userCount++;
                 await Clients.Caller.SendAsync("LoginLock", username);
 
