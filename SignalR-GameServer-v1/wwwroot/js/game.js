@@ -327,6 +327,54 @@ connection.on("EnableAbilityButton", function() {
     document.getElementById("useSpecialAbility").disabled = false;
 });
 
+
+document.getElementById("simpleOpen").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", ":O").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("simpleLaugh").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", ":D").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("simpleSmile").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", ":)").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("glassesSmile").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", "8)").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("glassesLaugh").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", "8D").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("glassesOpen").addEventListener("click", function(event) {
+    connection.invoke("SendEmoji", "8O").catch(function(err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+connection.on("ReceiveEmoji", function (emoji) {
+    console.log(emoji);
+});
+
+
 connection.on("SeasonState", function (state) {
     if (state == "WinterState") {
         document.getElementById("game-window").setAttribute("style", "background-image: url(https://cdn.discordapp.com/attachments/704673822493638708/783413960866529290/winter.png)");

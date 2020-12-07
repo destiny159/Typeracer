@@ -432,7 +432,27 @@ namespace SignalR_GameServer_v1.Hubs
                     break;
             }
         }
+        
+        public async Task SendEmoji(string emoji)
+        {
+            InterpreterContext context = new InterpreterContext(emoji);
 
+            List<Expression> tree = new List<Expression>();
+
+            tree.Add(new EyesExpression());
+
+            tree.Add(new MouthExpression());
+            
+            foreach (Expression exp in tree)
+            {
+                exp.Interpret(context);
+            }
+            
+            Console.WriteLine("{0} = {1}", emoji, context.Output);
+
+            await Clients.All.SendAsync("ReceiveEmoji", context.Output);
+        }
+        
         public async Task SetReady(string username)
         {
             Player newPlayer = new Player();

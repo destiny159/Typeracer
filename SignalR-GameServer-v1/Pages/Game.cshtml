@@ -38,220 +38,278 @@
 </style>
 
 <div class="container-fluid" id="game-window">
-    <br>
-    <h1 id="round-place"></h1>
-    <h6 id="time-place"></h6>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-left" id="1-player">
-                <nobr>
+<br>
+<h1 id="round-place"></h1>
+<h6 id="time-place"></h6>
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="text-left" id="1-player">
+            <nobr>
                 Player1
-                </nobr>
-            </h3>
-        </div>
-        <div class="col-md-8">
-            <div class="progress civ">
-                <div class="progress-bar naujas" id="1-player-bar" role="progressbar" style="width: 0%;background-color: grey" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100"></div>
+            </nobr>
+        </h3>
+    </div>
+    <div class="col-md-8">
+        <div class="progress civ">
+            <div class="progress-bar naujas" id="1-player-bar" role="progressbar" style="width: 0%;background-color: grey" aria-valuenow="0"
+                 aria-valuemin="0" aria-valuemax="100">
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 10px"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-left" id="2-player">
-                <nobr>
+</div>
+<div style="width: 100%; height: 10px"></div>
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="text-left" id="2-player">
+            <nobr>
                 Player2
-                </nobr>
-            </h3>
-        </div>
-        <div class="col-md-8">
-            <div class="progress civ">
-                <div class="progress-bar naujas" id="2-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100"></div>
+            </nobr>
+        </h3>
+    </div>
+    <div class="col-md-8">
+        <div class="progress civ">
+            <div class="progress-bar naujas" id="2-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                 aria-valuemin="0" aria-valuemax="100">
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 10px"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-left" id="3-player">
-                <nobr>
+</div>
+<div style="width: 100%; height: 10px"></div>
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="text-left" id="3-player">
+            <nobr>
                 Player3
             </nobr>
-            </h3>
-        </div>
-        <div class="col-md-8">
-            <div class="progress civ">
-                <div class="progress-bar naujas" id="3-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100"></div>
+        </h3>
+    </div>
+    <div class="col-md-8">
+        <div class="progress civ">
+            <div class="progress-bar naujas" id="3-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                 aria-valuemin="0" aria-valuemax="100">
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 10px"></div>
-    <div class="row">
-        <div class="col-md-4">
-            <h3 class="text-left" id="4-player">
-                <nobr>
+</div>
+<div style="width: 100%; height: 10px"></div>
+<div class="row">
+    <div class="col-md-4">
+        <h3 class="text-left" id="4-player">
+            <nobr>
                 Player4
             </nobr>
-            </h3>
-        </div>
-        <div class="col-md-8">
+        </h3>
+    </div>
+    <div class="col-md-8">
 
-            <div class="progress civ">
+        <div class="progress civ">
 
-                <div class="progress-bar naujas" id="4-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
-                     aria-valuemin="0" aria-valuemax="100">
-                </div>
+            <div class="progress-bar naujas" id="4-player-bar" role="progressbar" style="width: 0%" aria-valuenow="0"
+                 aria-valuemin="0" aria-valuemax="100">
             </div>
         </div>
     </div>
-    <div style="width: 100%; height: 10px"></div>   
-    <div class="row">
+</div>
+<div style="width: 100%; height: 10px"></div>
+<div class="row">
+    <div class="col-md-12">
+        <button type="submit" id="useSpecialAbility" class="btn btn-warning btn-lg col-md-12" style="width: 100%;">
+            Use special ability
+        </button>
+
+        <button type="submit" style="width: 100%;" id="cloneButton" class="btn btn-info col-md-12">CLONE</button>
+
+        <h3 class="text-center" id="countdown-place">
+
+        </h3>
+        <h3 class="text-center" id="win-lose-place">
+
+        </h3>
+        <h3 class="text-center not-copyable" id="word-place">
+            Word Place
+        </h3>
         <div class="col-md-12">
-            <button type="submit" id="useSpecialAbility" class="btn btn-warning btn-lg col-md-12" style="width: 100%;">
-                Use special ability
-            </button>
-
-            <button type="submit" style="width: 100%;" id="cloneButton" class="btn btn-info col-md-12">CLONE</button>
-
-            <h3 class="text-center" id="countdown-place">
-
-            </h3>
-            <h3 class="text-center" id="win-lose-place">
-
-            </h3>
-            <h3 class="text-center not-copyable" id="word-place">
-                Word Place
-            </h3>
-            <div class="col-md-12">
-                <input id="word-input" style="width: 100%;"/>
-            </div>
-
-            <button type="submit" id="sendButton" class="btn btn-primary btn-lg col-md-12" style="margin-top: 15px;">
-                Submit
-            </button>
+            <input id="word-input" style="width: 100%;"/>
         </div>
+
+        <button type="submit" id="sendButton" class="btn btn-primary btn-lg col-md-12" style="margin-top: 15px;">
+            Submit
+        </button>
     </div>
-    <div id="accordion">
-        <div class="card">
-            <div class="card-header" id="headingOne">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" style="text-decoration: none; color:black;" aria-expanded="false"
-                            aria-controls="collapseOne">
-                        Points colors
-                    </button>
-                </h5>
-            </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="changePointsColorRed" class="btn btn-danger">RED
-                                COLOR
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="changePointsColorBlue" class="btn btn-info">BLUE
-                                COLOR
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="changePointsColorGreen" class="btn btn-success">
-                                GREEN COLOR
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+</div>
+<div id="accordion">
+    <div class="card">
+        <div class="card-header" id="headingOne">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseOne" style="text-decoration: none; color:black;" aria-expanded="false"
+                        aria-controls="collapseOne">
+                    Points colors
+                </button>
+            </h5>
         </div>
 
-
-        <div class="card">
-            <div class="card-header" id="headingSkin">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseSkin"
-                            aria-expanded="false" aria-controls="collapseTwo">
-                        Skin
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseSkin" class="collapse" aria-labelledby="headingSkin" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-12">
-                            <button type="submit" style="width: 100%;" id="changeSkin" class="btn btn-warning">
-                                Change my skin
-                            </button>
-                        </div>
+        <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="changePointsColorRed" class="btn btn-danger">
+                            RED
+                            COLOR
+                        </button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card" id="shop-card">
-            <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseTwo"
-                            aria-expanded="false" aria-controls="collapseTwo">
-                        Shop
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="goldTalismanButton" class="btn btn-warning">
-                                GOLD
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="silverTalismanButton"
-                                    class="btn btn-secondary">SILVER
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="bronzeTalismanButton" class="btn btn-danger">
-                                BRONZE
-                            </button>
-                        </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="changePointsColorBlue" class="btn btn-info">
+                            BLUE
+                            COLOR
+                        </button>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="card" id="command-card">
-            <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                    <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseThree"
-                            aria-expanded="false" aria-controls="collapseThree">
-                        Commands
-                    </button>
-                </h5>
-            </div>
-            <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="penaltyButton" class="btn btn-dark">Penalty
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="enableSpecialAbilityButton"
-                                    class="btn btn-dark">Enable Special Ability
-                            </button>
-                        </div>
-                        <div class="col-md-4">
-                            <button type="submit" style="width: 100%;" id="prizeButton" class="btn btn-dark">Give random
-                                prize
-                            </button>
-                        </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="changePointsColorGreen" class="btn btn-success">
+                            GREEN COLOR
+                        </button>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+    <div class="card">
+        <div class="card-header" id="headingSkin">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseSkin"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                    Skin
+                </button>
+            </h5>
+        </div>
+        <div id="collapseSkin" class="collapse" aria-labelledby="headingSkin" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <button type="submit" style="width: 100%;" id="changeSkin" class="btn btn-warning">
+                            Change my skin
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" id="shop-card">
+        <div class="card-header" id="headingTwo">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseTwo"
+                        aria-expanded="false" aria-controls="collapseTwo">
+                    Shop
+                </button>
+            </h5>
+        </div>
+        <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="goldTalismanButton" class="btn btn-warning">
+                            GOLD
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="silverTalismanButton"
+                                class="btn btn-secondary">
+                            SILVER
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="bronzeTalismanButton" class="btn btn-danger">
+                            BRONZE
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" id="command-card">
+        <div class="card-header" id="headingThree">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseThree"
+                        aria-expanded="false" aria-controls="collapseThree">
+                    Commands
+                </button>
+            </h5>
+        </div>
+        <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="penaltyButton" class="btn btn-dark">
+                            Penalty
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="enableSpecialAbilityButton"
+                                class="btn btn-dark">
+                            Enable Special Ability
+                        </button>
+                    </div>
+                    <div class="col-md-4">
+                        <button type="submit" style="width: 100%;" id="prizeButton" class="btn btn-dark">
+                            Give random
+                            prize
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card" id="emoji-card">
+        <div class="card-header" id="headingFour">
+            <h5 class="mb-0">
+                <button class="btn btn-link collapsed" data-toggle="collapse" style="text-decoration: none; color:black;" data-target="#collapseFour"
+                        aria-expanded="false" aria-controls="collapseFour">
+                    Emoji
+                </button>
+            </h5>
+        </div>
+        <div id="collapseFour" class="collapse" aria-labelledby="headingFour" data-parent="#accordion">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="simpleSmile" class="btn btn-dark">
+                            :)
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="simpleLaugh"
+                                class="btn btn-dark">
+                            :D
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="simpleOpen" class="btn btn-dark">
+                            :O
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="glassesSmile" class="btn btn-dark">
+                            8)
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="glassesLaugh" class="btn btn-dark">
+                            8D
+                        </button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" style="width: 100%;" id="glassesOpen" class="btn btn-dark">
+                            8O
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 
 <script>
