@@ -17,7 +17,7 @@ namespace SignalR_GameServer_v1
         public abstract double HandleRequest(string userWord, string givenWord);
     }
 
-    class ConcreteHandler1 : Handler
+    class ReverseWordHandler : Handler
     {
         public override double HandleRequest(string userWord, string givenWord)
         {
@@ -43,7 +43,7 @@ namespace SignalR_GameServer_v1
         }
     }
 
-    class ConcreteHandler2 : Handler
+    class FullWordHandler : Handler
     {
         public override double HandleRequest(string userWord, string givenWord)
         {
@@ -62,7 +62,7 @@ namespace SignalR_GameServer_v1
         }
     }
 
-    class ConcreteHandler3 : Handler
+    class PartWordHandler : Handler
     {
         public override double HandleRequest(string userWord, string givenWord)
         {
@@ -121,7 +121,7 @@ namespace SignalR_GameServer_v1
         }
     }
 
-    class ConcreteHandler4 : Handler
+    class LengthWordHandler : Handler
     {
         public override double HandleRequest(string userWord, string givenWord)
         {

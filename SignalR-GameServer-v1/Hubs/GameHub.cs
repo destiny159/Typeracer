@@ -56,13 +56,13 @@ namespace SignalR_GameServer_v1.Hubs
 
         private static AbstractClass thirdLevel = new ThirdLevelWord();
 
-        private static Handler h1 = new ConcreteHandler1();
+        private static Handler h1 = new ReverseWordHandler();
 
-        private static Handler h2 = new ConcreteHandler2();
+        private static Handler h2 = new FullWordHandler();
 
-        private static Handler h3 = new ConcreteHandler3();
+        private static Handler h3 = new PartWordHandler();
 
-        private static Handler h4 = new ConcreteHandler4();
+        private static Handler h4 = new LengthWordHandler();
 
         private static StateContext _stateContext = new StateContext(new WinterState());
         
@@ -393,10 +393,10 @@ namespace SignalR_GameServer_v1.Hubs
             firstLevel = new FirstLevelWord();
             secondLevel = new SecondLevelWord();
             thirdLevel = new ThirdLevelWord();
-            h1 = new ConcreteHandler1();
-            h2 = new ConcreteHandler2();
-            h3 = new ConcreteHandler3();
-            h4 = new ConcreteHandler4();
+            h1 = new ReverseWordHandler();
+            h2 = new FullWordHandler();
+            h3 = new PartWordHandler();
+            h4 = new LengthWordHandler();
             _stateContext = new StateContext(new WinterState());
             chatroom = new Chatroom();
             originator = new Originator();
