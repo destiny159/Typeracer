@@ -70,6 +70,10 @@ namespace SignalR_GameServer_v1.Hubs
         private static StateContext _stateContext = new StateContext(new WinterState());
         
        private static Chatroom chatroom = new Chatroom();
+       
+       private static Originator originator = new Originator();
+       
+       private static Caretaker caretaker = new Caretaker();
 
         public async Task SendMessage(string user, string message)
         {
@@ -245,7 +249,19 @@ namespace SignalR_GameServer_v1.Hubs
             h3.SetSuccessor(h4);
 
             double chainPoints = h1.HandleRequest(word, givenWord);
+            
+            if (chainPoints >= 1)
+            {
+                List<Player> playerListCopy = new List<Player>();
 
+                playerList.ForEach(delegate (Player player)
+                {
+                    playerListCopy.Add((Player)player.Clone());
+                });
+                
+                originator.State = playerListCopy;
+                caretaker.Memento = originator.CreateMemento();
+            }
 
             if (chainPoints < 1)
             {
@@ -557,6 +573,13 @@ namespace SignalR_GameServer_v1.Hubs
         {
             UserHandler.ConnectedIds.Remove(Context.ConnectionId);
             return base.OnDisconnectedAsync(exception);
+        }
+
+        public async Task TimeTravelAction()
+        {
+            originator.SetMemento(caretaker.Memento);
+            playerList = originator.State;
+            await Clients.All.SendAsync("ReceiveAllUsernames", playerList);
         }
 
         public async Task BuyGoldTalisman(string username)

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace SignalR_GameServer_v1
 {
-    class Player 
+    class Player : ICloneable
   {
     public string username {get;set;}
     public int points {get;set;}
@@ -55,6 +55,26 @@ namespace SignalR_GameServer_v1
         receivedFrom = from;
         Console.WriteLine("{0} to {1}: '{2}'",
             from, username, message);
+    }
+
+    public object Clone()
+    {
+        return new Player
+        {
+            username = this.username,
+            points = this.points,
+            isWinner = this.isWinner,
+            isLoser = this.isLoser,
+            character = this.character,
+            isAbilityUsed = this.isAbilityUsed,
+            characterKoeficient = this.characterKoeficient,
+            pointsColor = this.pointsColor,
+            skin = this.skin,
+            receivedEmoji = this.receivedEmoji,
+            receivedFrom = this.receivedFrom,
+            talisman = this.talisman,
+            permissionProxy = this.permissionProxy,
+        };
     }
   }
 }

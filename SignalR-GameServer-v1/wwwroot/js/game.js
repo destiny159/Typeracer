@@ -326,6 +326,15 @@ document.getElementById("enableSpecialAbilityButton").addEventListener("click", 
     event.preventDefault();
 });
 
+document.getElementById("timeTravelButton").addEventListener("click", function(event) {
+    connection.invoke("TimeTravelAction").catch(function(err) {
+        return console.error(err.toString());
+    });
+
+    event.preventDefault();
+});
+
+
 document.getElementById("prizeButton").addEventListener("click", function(event) {
     connection.invoke("PrizeCommand").catch(function(err) {
         return console.error(err.toString());
