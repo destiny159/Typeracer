@@ -74,6 +74,8 @@ namespace SignalR_GameServer_v1.Hubs
        private static Originator originator = new Originator();
        
        private static Caretaker caretaker = new Caretaker();
+       
+       private static ParametersGroup parametersGroup = new ParametersGroup();
 
         public async Task SendMessage(string user, string message)
         {
@@ -134,6 +136,7 @@ namespace SignalR_GameServer_v1.Hubs
 
         public void MakeWords()
         {
+            parametersGroup.Attach(new Parameter(1,2.5,"black"));
             int x = 0;
             for (int i = 0; i < 9; i++)
             {
@@ -249,6 +252,23 @@ namespace SignalR_GameServer_v1.Hubs
             h3.SetSuccessor(h4);
 
             double chainPoints = h1.HandleRequest(word, givenWord);
+            
+            parametersGroup.Accept(new ColorVisitor());
+
+            parametersGroup.Accept(new OpacityVisitor());
+            
+            parametersGroup.Accept(new FontSizeVisitor());
+
+            Console.WriteLine("params");
+            Console.WriteLine("Color: "+parametersGroup.getParameter(0).Color);
+            Console.WriteLine("Opacity: "+parametersGroup.getParameter(0).Opacity);
+            Console.WriteLine("FontSize: "+parametersGroup.getParameter(0).FontSize);
+
+            await Clients.All.SendAsync(
+                "ReceiveWordStyle",
+                Math.Round(parametersGroup.getParameter(0).Opacity, 2),
+                Math.Round(parametersGroup.getParameter(0).FontSize, 2),
+                parametersGroup.getParameter(0).Color);
             
             if (chainPoints >= 1)
             {

@@ -184,6 +184,11 @@ connection.on("ReceiveCountdown", function(time, word) {
     });
 });
 
+connection.on("ReceiveWordStyle", function(opacity, fontSize, color) {
+    document.getElementById("word-place").setAttribute("style", "opacity:" + opacity + "; color: "+color+"; font-size:"+fontSize+"em");
+});
+
+
 connection.on("GetGameRound", function(round) {
 
     document.getElementById("round-place").innerHTML = "Round: " + round;
