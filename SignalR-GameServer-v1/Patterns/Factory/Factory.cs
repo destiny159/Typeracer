@@ -33,24 +33,47 @@ namespace SignalR_GameServer_v1
         List<String> thirdWordList = new List<String>();
         public RandomWords()
         {
-            firstWordList.Add("PAntanas");
-            firstWordList.Add("PBudelis");
-            firstWordList.Add("PButelis");
-            firstWordList.Add("PKompas");
-            firstWordList.Add("POrbita");
+            firstWordList.Add("Antanas");
+            firstWordList.Add("Butelis");
+            firstWordList.Add("Budelis");
+            firstWordList.Add("Kirvis");
+            firstWordList.Add("Ponas");
+            firstWordList.Add("Adata");
+            firstWordList.Add("Lukas");
+            firstWordList.Add("Pelė");
+            firstWordList.Add("Laidas");
+            firstWordList.Add("Indas");
+            firstWordList.Add("Bliūdas");
+            firstWordList.Add("Ekranas");
+            firstWordList.Add("Limpa");
             
-            secondWordList.Add("ALapas");
-            secondWordList.Add("ALaidas");
-            secondWordList.Add("AMykolas");
-            secondWordList.Add("AJonukas");
-            secondWordList.Add("ANegalima");
+            secondWordList.Add("Lipdukas");
+            secondWordList.Add("Piniginė");
+            secondWordList.Add("Servėtėlė");
+            secondWordList.Add("Raktelis");
+            secondWordList.Add("Tašė");
+            secondWordList.Add("Ilgintuvas");
+            secondWordList.Add("Bonka");
+            secondWordList.Add("Šiaudas");
+            secondWordList.Add("Mašina");
+            secondWordList.Add("Sniegas");
+            secondWordList.Add("Medis");
+            secondWordList.Add("Laukas");
+            secondWordList.Add("Tvora");
             
-            thirdWordList.Add("TTelefonas");
-            thirdWordList.Add("TAtsuktuvas");
-            thirdWordList.Add("TMargarita");
-            thirdWordList.Add("TLaikas");
-            thirdWordList.Add("TMokomasis");
-            thirdWordList.Add("TLOGIKA");
+            thirdWordList.Add("Telefonas");
+            thirdWordList.Add("Atsuktuvas");
+            thirdWordList.Add("Margarita");
+            thirdWordList.Add("Miegojimas");
+            thirdWordList.Add("Slidinėjimas");
+            thirdWordList.Add("Replės");
+            thirdWordList.Add("Proginis");
+            thirdWordList.Add("Kardanas");
+            thirdWordList.Add("Ratas");
+            thirdWordList.Add("Turbina");
+            thirdWordList.Add("Kapotas");
+            thirdWordList.Add("Durelės");
+            
         }
 
         public RandomWords(string word)
@@ -116,26 +139,36 @@ namespace SignalR_GameServer_v1
         List<String> thirdWordList = new List<String>();
         public RandomLetters()
         {
-            firstWordList.Add("Pzxzxzx");
-            firstWordList.Add("Pbcbcbc");
-            firstWordList.Add("Pcvcvcv");
-            firstWordList.Add("Polololo");
-            firstWordList.Add("Pkikikiki");
+            firstWordList.Add("asddaffsf");
+            firstWordList.Add("gfdgfg");
+            firstWordList.Add("bbvbnv");
+            firstWordList.Add("hjhjnb");
+            firstWordList.Add("fgfcv");
+            firstWordList.Add("cvcvdg");
+            firstWordList.Add("gdfgdfvdb");
+            firstWordList.Add("asddsc");
+            firstWordList.Add("gdfgddg");
+            firstWordList.Add("vxcdsfq");
             
-            secondWordList.Add("Artrtrtrt");
-            secondWordList.Add("Aqwqwqw");
-            secondWordList.Add("Auiuiuiui");
-            secondWordList.Add("Apopopo");
-            secondWordList.Add("Anrnrnrn");
+            secondWordList.Add("qdsfsf");
+            secondWordList.Add("vxcvasdadw");
+            secondWordList.Add("qqmmpojk");
+            secondWordList.Add("zxcfsfe");
+            secondWordList.Add("fsefdxcv");
+            secondWordList.Add("qdsdsaf");
+            secondWordList.Add("vxcfsdadw");
+            secondWordList.Add("qqmsdmpojk");
+            secondWordList.Add("zxcxfsfe");
+            secondWordList.Add("xcvefcv");
             
-            thirdWordList.Add("Tsesese");
-            thirdWordList.Add("Tasasas");
-            thirdWordList.Add("Tasasas");
-            thirdWordList.Add("Tvbvbvb");
-            thirdWordList.Add("Tgsgssg");
-            thirdWordList.Add("Tsdgdgdxc");
-            thirdWordList.Add("Tvxcvxcv");
-            thirdWordList.Add("Tgdfgdfg");
+            thirdWordList.Add("xcvertasdljk");
+            thirdWordList.Add("jklfgsdf");
+            thirdWordList.Add("sdfxcvgfh");
+            thirdWordList.Add("fsd");
+            thirdWordList.Add("xcvdrgd");
+            thirdWordList.Add("rdgdg");
+            thirdWordList.Add("gdfgdfgdfg");
+            thirdWordList.Add("dgqqd");
         }
 
         public RandomLetters(string letters)
@@ -199,20 +232,35 @@ namespace SignalR_GameServer_v1
         List<String> thirdWordList = new List<String>();
         public RandomSentence()
         {
-            firstWordList.Add("PNoriu namo");
-            firstWordList.Add("PMano namas didelis");
-            firstWordList.Add("PKompiuteris naujas");
-            firstWordList.Add("PPuodelis pilnas kavos");
+            firstWordList.Add("Noriu namo");
+            firstWordList.Add("Mano namas didelis");
+            firstWordList.Add("Kompiuteris naujas");
+            firstWordList.Add("Puodelis pilnas kavos");
 
-            secondWordList.Add("Aausines kraunasi");
-            secondWordList.Add("AMilaknis pataiko");
-            secondWordList.Add("ATelefoniukas senas");
-            secondWordList.Add("SNeturiu nieko");
+            secondWordList.Add("Ausines kraunasi");
+            secondWordList.Add("Milaknis pataiko");
+            secondWordList.Add("Telefoniukas senas");
+            secondWordList.Add("Neturiu nieko");
 
-            thirdWordList.Add("TServeris veikia");
-            thirdWordList.Add("Tubuntu sistema");
-            thirdWordList.Add("TKieras kartonas");
-            thirdWordList.Add("TLenta ne malka");
+            thirdWordList.Add("Serveris veikia");
+            thirdWordList.Add("Ubuntu sistema");
+            thirdWordList.Add("Kietas kartonas");
+            thirdWordList.Add("Lenta ne malka");
+            
+            firstWordList.Add("proin elementum");
+            firstWordList.Add("aliquam faucibus");
+            firstWordList.Add("quisque imperdiet");
+            firstWordList.Add("eleifend elit");
+
+            secondWordList.Add("vel malesuada");
+            secondWordList.Add("mauris aliquet");
+            secondWordList.Add("tempor sit");
+            secondWordList.Add("sed gravida");
+
+            thirdWordList.Add(" sollicitudin eget");
+            thirdWordList.Add("odio porta");
+            thirdWordList.Add("consectetur auctor");
+            thirdWordList.Add("rhoncus tristique");
         }
         public RandomSentence(string word)
         {

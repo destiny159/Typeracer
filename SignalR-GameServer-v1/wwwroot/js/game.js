@@ -264,6 +264,13 @@ document.getElementById("sendButton").addEventListener("click", function(event) 
     event.preventDefault();
 });
 
+connection.on("RedirectToLobby", function(username) {
+    alert("Laimėtojas yra "+username);
+    sessionStorage.setItem("talismanBought", false);
+    sessionStorage.setItem("abilityUsed", false);
+    window.location.href = "/";
+});
+
 document.getElementById("goldTalismanButton").addEventListener("click", function(event) {
 
     connection.invoke("BuyGoldTalisman", sessionStorage.getItem('username')).catch(function(err) {

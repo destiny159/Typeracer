@@ -13,15 +13,12 @@ namespace SignalR_GameServer_v1.Hubs
         {
         }
 
-        public static bool close = false;
+    
         public static int userCount = 0;
         public static int characterCount = 0;
         AbstractFactory factory = new FirstFactory();
-        public static List<List<String>> userInfoArray = new List<List<String>>();
+      
         static ConcreteSubject observer = new ConcreteSubject();
-
-        static Creator[] creators = new Creator[3];
-        public static List<String> wordList = new List<String>();
 
         public static String givenWord = "";
 
@@ -79,22 +76,7 @@ namespace SignalR_GameServer_v1.Hubs
 
         public async Task SendMessage(string user, string message)
         {
-            //await Clients.All.SendAsync("ReceiveMessage", user, message);
             await Clients.Caller.SendAsync("ReceiveMessage", user, message);
-            /*
-            if (message == "labas" && !close)
-            {
-                await Clients.Caller.SendAsync("ReceiveMessage", user, message);
-              //  await Clients.Others.SendAsync("ReceiveMessage", user, "UZDARYTA");
-                //await Clients.All.SendAsync("LockUnlockInput", "LOCK");
-
-                //close = true;
-            }
-            */
-            //await Clients.Caller.SendAsync("ReceiveMessage", user, "delivered: " + message);
-            //singleton test
-            // Singleton.Instance.EndTime = DateTime.Now;
-            //await Clients.Caller.SendAsync("SentTimeDifference",Singleton.Instance.Difference() );
         }
 
         public async Task UseSpecialAbility(string character)
@@ -333,6 +315,13 @@ namespace SignalR_GameServer_v1.Hubs
 
                         Console.WriteLine("Pridedama: " + playerList[i].username + " talismano tasku: " + points);
                     }
+
+                    if (playerList[i].points >= 100)
+                    {
+                        await Clients.All.SendAsync("RedirectToLobby",playerList[i].username);
+                        endGame();
+                        return;
+                    }
                 }
 
                 if (abilityXpRate != 1)
@@ -382,6 +371,42 @@ namespace SignalR_GameServer_v1.Hubs
                 await Clients.All.SendAsync("GetGameRound", observer.SubjectState);
             }
         }
+
+        public void endGame()
+        {
+            userCount = 0;
+            characterCount = 0;
+            observer = new ConcreteSubject();
+            givenWord = "";
+            xpRate = 1;
+            abilityXpRate = 1;
+            lastAbilityUser = "";
+            playerList = new List<Player>();
+            lastWord = new WordPrototype("empty");
+            usedClone = false;
+            target = new Adapter();
+            pointsColorAbstraction = new PointsColorRefinedAbstraction();
+            skinAbstraction = new SkinAbstraction();
+            facade = new Facade();
+            collection = new Collection();
+            iterator = collection.CreateIterator();
+            firstLevel = new FirstLevelWord();
+            secondLevel = new SecondLevelWord();
+            thirdLevel = new ThirdLevelWord();
+            h1 = new ConcreteHandler1();
+            h2 = new ConcreteHandler2();
+            h3 = new ConcreteHandler3();
+            h4 = new ConcreteHandler4();
+            _stateContext = new StateContext(new WinterState());
+            chatroom = new Chatroom();
+            originator = new Originator();
+            caretaker = new Caretaker();
+            parametersGroup = new ParametersGroup();
+        }
+        
+        
+        
+        
 
         public async Task RequestGameRound()
         {
