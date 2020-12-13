@@ -234,26 +234,27 @@ namespace SignalR_GameServer_v1.Hubs
             h3.SetSuccessor(h4);
 
             double chainPoints = h1.HandleRequest(word, givenWord);
-            
-            parametersGroup.Accept(new ColorVisitor());
 
-            parametersGroup.Accept(new OpacityVisitor());
-            
-            parametersGroup.Accept(new FontSizeVisitor());
-
-            Console.WriteLine("params");
-            Console.WriteLine("Color: "+parametersGroup.getParameter(0).Color);
-            Console.WriteLine("Opacity: "+parametersGroup.getParameter(0).Opacity);
-            Console.WriteLine("FontSize: "+parametersGroup.getParameter(0).FontSize);
-
-            await Clients.All.SendAsync(
-                "ReceiveWordStyle",
-                Math.Round(parametersGroup.getParameter(0).Opacity, 2),
-                Math.Round(parametersGroup.getParameter(0).FontSize, 2),
-                parametersGroup.getParameter(0).Color);
-            
             if (chainPoints >= 1)
             {
+                parametersGroup.Accept(new ColorVisitor());
+                if (parametersGroup.getParameter(0).Opacity > 0.1)
+                {
+                    parametersGroup.Accept(new OpacityVisitor());  
+                    parametersGroup.Accept(new FontSizeVisitor());
+                }
+
+                Console.WriteLine("params");
+                Console.WriteLine("Color: "+parametersGroup.getParameter(0).Color);
+                Console.WriteLine("Opacity: "+parametersGroup.getParameter(0).Opacity);
+                Console.WriteLine("FontSize: "+parametersGroup.getParameter(0).FontSize);
+                
+                await Clients.All.SendAsync(
+                    "ReceiveWordStyle",
+                    Math.Round(parametersGroup.getParameter(0).Opacity, 2),
+                    Math.Round(parametersGroup.getParameter(0).FontSize, 2),
+                    parametersGroup.getParameter(0).Color);
+                
                 List<Player> playerListCopy = new List<Player>();
 
                 playerList.ForEach(delegate (Player player)

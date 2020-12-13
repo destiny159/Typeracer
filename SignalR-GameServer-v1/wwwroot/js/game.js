@@ -170,7 +170,8 @@ connection.on("ReceiveAllUsernames", function(message) {
 
 connection.on("ReceiveCountdown", function(time, word) {
 
-
+    document.getElementById("word-input").value = '';
+    
     if (sessionStorage.getItem('abilityUsed') == "true") {
         document.getElementById("useSpecialAbility").disabled = true;
     } else {
